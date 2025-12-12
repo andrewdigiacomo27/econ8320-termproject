@@ -5,7 +5,7 @@ import pandas as pd
 import os
 import pathlib as path
 
-#need to load API KEY???
+#need to load API KEY??? added part in workflow so should be okay
 API_KEY = os.getenv("BLS_API_KEY") #api key for web scraping
 
 url = "https://api.bls.gov/publicAPI/v2/timeseries/data/" #link to scrape
