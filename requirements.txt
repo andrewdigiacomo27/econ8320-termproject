@@ -1,6 +1,6 @@
 requests
 pandas
-python-datenv #if needed
+python-dotenv
 streamlit
 plotly
 matplotlib
