@@ -6,7 +6,7 @@ import os
 import pathlib as path
 from dotenv import load_dotenv
 
-load_dotenv() #load API key into script
+load_dotenv() #loading API key into script
 API_KEY = os.getenv("BLS_API_KEY") #api key for web scraping
 
 url = "https://api.bls.gov/publicAPI/v2/timeseries/data/" #link to scrape

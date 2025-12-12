@@ -26,11 +26,11 @@ jobs:
         run: |
           echo "BLS_API_KEY=${{ secrets.BLS_API_KEY }}" > .env
     
-      - name: Export variables from env
-        run: |
-          export $(grep -v '^#' .env | xargs)
+
       
       - name: Run BLS Import Script
+        env:
+          BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
         run: python scripts/importScript.py
     
       - name: Commit and push updated dataset
