@@ -2,6 +2,7 @@ import requests
 import json
 import datetime
 import pandas as pd
+import os
 
 API_KEY = "6f51e09102d544faa5bb235d49055a46" #api key for web scraping
 
@@ -54,9 +55,9 @@ combineData = seriesData["unemploymentRate"]
 for key in ["nfPRemp", "lfPRmi", "avgHE", "construction", "retail", "healthcare", "technology", "finance", "realEstate"]:
     combineData = combineData.merge(seriesData[key], on = 'date', how = 'inner') #combining data frames - 7
 
-import os
 
-dataFrame = combineData
+
+dataFrame = combineData                            #outputting csv file to data folder
 dataDir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.makedirs(dataDir, exist_ok = True)
 data_path = os.path.join(dataDir, "bls_table.csv")
