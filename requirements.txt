@@ -2,3 +2,5 @@ requests
 pandas
 python-datenv #if needed
 streamlit
+plotly
+matplotlib
