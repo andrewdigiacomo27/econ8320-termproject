@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 # load_dotenv() #loading API key into script
 API_KEY = os.getenv("BLS_API_KEY") #api key for web scraping
+if not API_KEY:
+    raise RuntimeError("BLS KEY not set")
 
 url = "https://api.bls.gov/publicAPI/v2/timeseries/data/" #link to scrape
 headers = {'Content-Type': 'application/json'}
@@ -22,9 +24,9 @@ seriesID = {
     "labor_force_participation_rate_major_industry" : "LNS11300000", #labor force participation rate major industry
     "average_hourly_earnings" : "CES0500000003", #average hourly earnings
     "construction_and_manufacturing" : "CES2023610001", #construction/manufacturing         this series and below display number of employees
-    "retail" : "CES4142361001", #trade/retail/wholesale/utilities            in the thousands within the table
-    "healthcare" : "CES6562000001", #ambulatory, hospitals, nursing             should be able to describe fluctuations
-    "technology" : "CES5000000001", #information sector - all employees            in unemployment rate with this
+    "retail" : "CES4142361001", #trade/retail/wholesale/utilities                            in the thousands within the table
+    "healthcare" : "CES6562000001", #ambulatory, hospitals, nursing                          should be able to describe fluctuations
+    "technology" : "CES5000000001", #information sector - all employees                      in unemployment rate with this
     "finance" : "CES5552000001", #fincial services/insurance
     "realEstate" : "CES5553000001" #real estate and rental leasing
 }
