@@ -24,3 +24,6 @@ st.dataframe(filt_table)
 
 st.subheader("Unemployment Rate Over Time")
 st.line_chart(filt_table.set_index("date")["unemploymentRate"])
+
+st.subheader("Comparison of Major Sectors to Unemployment Rate Over Time") #need to finish this
+st.line

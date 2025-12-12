@@ -24,7 +24,7 @@ jobs:
 
       - name: Create .env file with BLS API key
         run: |
-          echo "BLS_API_KEY = ${{ secrets.BLS_API_KEY }}" > .env
+          echo "BLS_API_KEY=${{ secrets.BLS_API_KEY }}" > .env
     
       - name: Export variables from env
         run: |

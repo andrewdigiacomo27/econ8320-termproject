@@ -4,8 +4,9 @@ import datetime
 import pandas as pd
 import os
 import pathlib as path
+from dotenv import load_dotenv
 
-#need to load API KEY??? added part in workflow so should be okay
+load_dotenv() #load API key into script
 API_KEY = os.getenv("BLS_API_KEY") #api key for web scraping
 
 url = "https://api.bls.gov/publicAPI/v2/timeseries/data/" #link to scrape
@@ -16,11 +17,11 @@ end = datetime.datetime.now().year
 
 #series IDs for sections - 1
 seriesID = {
-    "unemploymentRate" : "LNS14000000", #unemployment rate
-    "nfPRemp" : "CEU0000000001", #nonfarm payroll employees
-    "lfPRmi" : "LNS11300000", #labor force participation rate major industry
-    "avgHE" : "CES0500000003", #average hourly earnings
-    "construction" : "CES2023610001", #construction/manufacturing         this series and below display number of employees
+    "unemployment_rate" : "LNS14000000", #unemployment rate
+    "nonfarm_payroll_employees" : "CEU0000000001", #nonfarm payroll employees
+    "labor_force_participation_rate_major_industry" : "LNS11300000", #labor force participation rate major industry
+    "average_hourly_earnings" : "CES0500000003", #average hourly earnings
+    "construction_and_manufacturing" : "CES2023610001", #construction/manufacturing         this series and below display number of employees
     "retail" : "CES4142361001", #trade/retail/wholesale/utilities            in the thousands within the table
     "healthcare" : "CES6562000001", #ambulatory, hospitals, nursing             should be able to describe fluctuations
     "technology" : "CES5000000001", #information sector - all employees            in unemployment rate with this
@@ -56,9 +57,9 @@ for key,value in seriesID.items():
     rawData = dataCollect(value, start, end, API_KEY)
     seriesData[key] = df_conversion(rawData, key)   #puts all dataframe together under key names - 5
 
-combineData = seriesData["unemploymentRate"]
+combineData = seriesData["unemployment_rate"]
 for key in seriesID:
-    if key != "unemploymentRate":
+    if key != "unemployment_rate":
         combineData = combineData.merge(seriesData[key], on = 'date', how = 'inner') #combining data frames - 7
 
 dataFrame = combineData
