@@ -22,9 +22,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create .env file with BLS API key
-        run: |
-          echo "BLS_API_KEY=${{ secrets.BLS_API_KEY }}" > .env
+      # - name: Create .env file with BLS API key
+      #   run: |
+      #     echo "BLS_API_KEY=${{ secrets.BLS_API_KEY }}" > .env
     
 
       
