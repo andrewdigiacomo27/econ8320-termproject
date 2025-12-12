@@ -54,4 +54,10 @@ combineData = seriesData["unemploymentRate"]
 for key in ["nfPRemp", "lfPRmi", "avgHE", "construction", "retail", "healthcare", "technology", "finance", "realEstate"]:
     combineData = combineData.merge(seriesData[key], on = 'date', how = 'inner') #combining data frames - 7
 
+import os
 
+dataFrame = combineData
+dataDir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+os.makedirs(dataDir, exist_ok = True)
+data_path = os.path.join(dataDir, "bls_table.csv")
+dataFrame.to_csv(data_path, index = False)
