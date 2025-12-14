@@ -58,6 +58,7 @@ select_sectors = st.sidebar.multiselect(
 
 #Table Summary
 st.subheader("Employment Data")
+st.markdown("This table shows all BLS series data collected within the dashboard.")
 st.dataframe(filt_table)
 
 #KPI Summary Numbers
@@ -72,10 +73,12 @@ col4.metric("Labor Force Participation", f"{latest['Labor Force Participation Ra
 
 #Unemployment Trendline
 st.subheader("Unemployment Rate Over Time")
+st.markdown("Visual representation of the fluctuation of the unemployment rate over time.")
 st.line_chart(filt_table.set_index("Date")["Unemployment Rate"])
 
 #Correlation Heatmap
 st.subheader("Employment Metric Correlation")
+st.markdown("A demonstration of comparisons of all series ran within the dashboard.")
 corr_cols = [
     "Unemployment Rate",
     "Average Hourly Earnings",
@@ -87,13 +90,15 @@ st.dataframe(
 )
 
 #Major Sector Trendlines
-st.subheader("Comparison of Major Sectors Employment (in Thousands) Over Time")
+st.subheader("Trend of Major Sectors Employment (in Thousands) Over Time")
+st.markdown("A comparison of major sectors included within the dashboard.")
 indexed = filt_table.set_index("Date")[select_sectors]
 indexed = indexed / indexed.iloc[0] * 100
 st.line_chart(indexed)
 
 #Percent Change in Series per Month
 st.subheader("Monthly % Change in Sector Employment")
+st.markdown("A comparison of percent changes each month of each series ran within the dashboard.")
 percent_change = filt_table.set_index("Date")[select_sectors].pct_change() * 100
 percent_change = percent_change.round(2)
 st.dataframe(percent_change.style.background_gradient(cmap = "RdYlGn", axis = None))
