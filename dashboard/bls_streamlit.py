@@ -29,7 +29,7 @@ dataTable = dataTable.rename(columns = {
 
 #Starter code
 st.title("BLS Employment Dashboard")
-st.markdown("Explore unemployment, payroll, and major sector employment statistics.")
+st.markdown("Explore unemployment, payroll, and major sector employment statistics from the Bureau of Labor Statistics.")
 st.markdown("Please Note: This data has been extracted from the most recent date that all series have released, so the current month may not be available.")
 
 st.sidebar.subheader("Date Selection")
